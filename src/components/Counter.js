@@ -44,7 +44,7 @@ class Counter extends React.Component {
 
                     <div className="extra content">
                         <div className="ui two buttons">
-                            <div className="ui basic green button" onClick={this.onIncrementClick}>Increment</div>
+                            <div className="ui basic green button" onClick={this.changename}>Increment</div>
                             <div className="ui basic red button" onClick={this.onDecrementClick}>Decrement</div>
 
 
@@ -71,10 +71,23 @@ class Counter extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
         Count: state.Count
     }
 }
 
-export default connect(mapStateToProps)(Counter);
+const dispatchtoprops = (dispatch) => {
+    return {
+        changename: (name) => {
+            dispatch({
+                type: 'increment',
+                payload: name + 1
+            })
+            console.log(name)
+        }
+    }
+
+}
+
+export default connect(mapStateToProps)(dispatchtoprops)(Counter);
