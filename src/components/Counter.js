@@ -1,31 +1,24 @@
 import React from 'react'
+import { connect } from 'react-redux';
 let userInput = prompt;
 let jumpby;
 let value = 1;
 
 class Counter extends React.Component {
-    state = {
-        counter: 0,
 
-    }
 
     onIncrementClick = () => {
-        this.setState({ counter: this.state.counter + value })
+
 
     }
     onDecrementClick = () => {
-        this.setState({ counter: this.state.counter - value })
+
 
     }
-    onResetClick = () => {
-        this.setState({ counter: 0 })
-        this.setState({})
 
-    }
 
     jump = () => {
-        userInput = parseInt(prompt("enter the number"));
-        this.setState({ counter: userInput })
+
     }
 
 
@@ -44,7 +37,7 @@ class Counter extends React.Component {
                 <div className="card">
                     <div className="content ">
 
-                        <h1><center>{this.state.counter}</center></h1>
+                        <h1><center>{this.props.Count}</center></h1>
 
                     </div>
 
@@ -77,4 +70,11 @@ class Counter extends React.Component {
         )
     }
 }
-export default Counter;
+
+function mapStateToProps(state) {
+    return {
+        Count: state.Count
+    }
+}
+
+export default connect(mapStateToProps)(Counter);
